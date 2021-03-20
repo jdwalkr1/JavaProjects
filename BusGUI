@@ -1,0 +1,328 @@
+package busres;
+
+
+import java.awt.Color;
+import java.awt.ComponentOrientation;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+
+public class MainBRGUI extends JFrame {
+	
+	
+	//creating the warning for when the customer selects the same destination and departure
+	private static JLabel warning = new JLabel();
+	//Price Label
+	private static JLabel pricelabel = new JLabel("Cost of the Ticket");
+	private static JTextField price = new JTextField();
+	private static int ticket;
+	//String arrays for JComboBoxes
+	private static String dests [] = {"Tallinn", "Tartu", "Narva", "Parnu", "Rakvere", "Kuressare"};
+	private static String depts [] = {"Tallinn", "Tartu", "Narva", "Parnu", "Rakvere", "Kuressare"};
+	private static String tme [] = {"8:00", "10:00", "12:00", "14:00", "16:00", "18:00", "20:00", "22:00"};
+
+    
+	public static void busGUI() {
+		
+		//making GUI
+				JFrame jfrm = new JFrame("Make Your Reservation");
+				jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				jfrm.setSize(400, 250);
+				jfrm.setVisible(true);
+				
+				//JPanel
+				JPanel panel = new JPanel();
+				
+				panel.setLayout(new GridLayout(2, 3, 5, 5));
+				//Labels intended for the first row
+				JLabel dst = new JLabel("Destination");
+				JLabel dpt = new JLabel("Departure");
+				JLabel tm = new JLabel("Time");
+				
+				JPanel panel0 = new JPanel();
+				
+			
+	
+	//JComboBoxes for second Row
+	JComboBox<String> departures = new JComboBox<String>(depts);
+	departures.addActionListener(new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("You are departing from: " + departures.getSelectedItem() );
+			
+		}
+		})
+	;
+	
+	//Destination combobox that also generates a JLabel warning if the user's departure and destination are the same
+	JComboBox<String> destinations = new JComboBox<String>(dests);
+	destinations.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			if (departures.getSelectedItem().equals(destinations.getSelectedItem())) {
+				System.out.println("You must choose another destination.");
+				warning.setForeground(Color.RED);
+				warning.setText("You must choose another destination");
+				}
+			else if(departures.getSelectedItem().equals("Tallinn")&(destinations.getSelectedItem().equals("Tartu"))) {
+				warning.setText(null);
+				ticket = 12;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Tartu")&(destinations.getSelectedItem().equals("Tallinn"))) {
+				warning.setText(null);
+				ticket = 12;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Tallinn")&(destinations.getSelectedItem().equals("Narva"))) {
+				warning.setText(null);
+				ticket = 15;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Narva")&(destinations.getSelectedItem().equals("Tallinn"))) {
+				warning.setText(null);
+				ticket = 15;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Tallinn")&(destinations.getSelectedItem().equals("Parnu"))) {
+				warning.setText(null);
+				ticket = 15;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Parnu")&(destinations.getSelectedItem().equals("Tallinn"))) {
+				warning.setText(null);
+				ticket = 15;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Tallinn")&(destinations.getSelectedItem().equals("Rakvere"))) {
+				warning.setText(null);
+				ticket = 13;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Rakvere")&(destinations.getSelectedItem().equals("Tallinn"))) {
+				warning.setText(null);
+				ticket = 13;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Tallinn")&(destinations.getSelectedItem().equals("Kuressare"))) {
+				warning.setText(null);
+				ticket = 16;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Kuressare")&(destinations.getSelectedItem().equals("Tallinn"))) {
+				warning.setText(null);
+				ticket = 16;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Tartu")&(destinations.getSelectedItem().equals("Narva"))) {
+				warning.setText(null);
+				ticket = 14;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Narva")&(destinations.getSelectedItem().equals("Tartu"))) {
+				warning.setText(null);
+				ticket = 14;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Tartu")&(destinations.getSelectedItem().equals("Rakvere"))) {
+				warning.setText(null);
+				ticket = 13;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Rakvere")&(destinations.getSelectedItem().equals("Tartu"))) {
+				warning.setText(null);
+				ticket = 13;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Tartu")&(destinations.getSelectedItem().equals("Parnu"))) {
+				warning.setText(null);
+				ticket = 17;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Parnu")&(destinations.getSelectedItem().equals("Tartu"))) {
+				warning.setText(null);
+				ticket = 17;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Tartu")&(destinations.getSelectedItem().equals("Kuressare"))) {
+				warning.setText(null);
+				ticket = 18;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Kuressare")&(destinations.getSelectedItem().equals("Tartu"))) {
+				warning.setText(null);
+				ticket = 18;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Narva")&(destinations.getSelectedItem().equals("Parnu"))) {
+				warning.setText(null);
+				ticket = 18;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Parnu")&(destinations.getSelectedItem().equals("Narva"))) {
+				warning.setText(null);
+				ticket = 18;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Narva")&(destinations.getSelectedItem().equals("Rakvere"))) {
+				warning.setText(null);
+				ticket = 10;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Rakvere")&(destinations.getSelectedItem().equals("Narva"))) {
+				warning.setText(null);
+				ticket = 10;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Narva")&(destinations.getSelectedItem().equals("Kuressare"))) {
+				warning.setText(null);
+				ticket = 18;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Narva")&(destinations.getSelectedItem().equals("Kuressare"))) {
+				warning.setText(null);
+				ticket = 18;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Rakvere")&(destinations.getSelectedItem().equals("Kuressare"))) {
+				warning.setText(null);
+				ticket = 18;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			else if(departures.getSelectedItem().equals("Kuressare")&(destinations.getSelectedItem().equals("Rakvere"))) {
+				warning.setText(null);
+				ticket = 18;
+				price.setText(""+ticket);
+				System.out.println("Your price will be...");
+			}
+			
+	//This else statement makes the warning invisible to the user.		
+			else
+			warning.setText(null);
+			System.out.println("Your bus will arrive at: " + destinations.getSelectedItem());
+		}
+	});
+	
+	JComboBox<String> time = new JComboBox<String>(tme);
+	time.addActionListener(new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String tme = (String) time.getSelectedItem();
+			System.out.println("Your bus will leave at: " + time.getSelectedItem());
+			}
+	});
+	
+
+	//Panel that includes
+	panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+	panel.add(dpt);
+	panel.add(dst);
+	panel.add(tm);
+	panel.add(departures);
+	panel.add(destinations);
+	panel.add(time);
+	
+	//JPanel that includes Passenger first and last name
+	JPanel panel2 = new JPanel();
+	panel2.setLayout(new GridLayout(3, 4, 5, 5));
+	//Setting Action Listener's for Passengers first name
+	
+	JLabel firstname = new JLabel("Passenger's first name");
+	JLabel lastname = new JLabel("Passenger's last name");
+	JTextField usrfname = new JTextField();
+	JTextField usrlname = new JTextField();
+	panel2.add(firstname);
+	panel2.add(usrfname);
+	panel2.add(lastname);
+	panel2.add(usrlname);
+	panel2.add(pricelabel);
+	panel2.add(price);
+	//Adding Action Listener
+	
+	JButton submit = new JButton("CONFIRM");
+			submit.setVisible(true);
+			submit.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+				System.out.println("Confirmation Clicked");
+					
+				}});
+	
+	JButton cancel = new JButton("CANCEL");
+			cancel.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+				price.setText(null);
+				System.out.println("Cancellation Clicked");
+					
+				}});
+	        cancel.setVisible(true);
+	
+	JPanel panel3 = new JPanel();
+	panel3.setLayout(new GridLayout(3, 1, 5, 5));
+	panel3.add(warning);
+	panel3.add(submit);
+	panel3.add(cancel);
+	
+	//BigJPanel that includes pretty much everything.
+		JPanel bigpanel = new JPanel();
+		bigpanel.setVisible(true);
+		bigpanel.add(panel0);
+		bigpanel.add(panel);
+		bigpanel.add(panel2);
+		bigpanel.add(panel3);
+		
+	
+	
+	jfrm.add(bigpanel);
+	
+	
+	}
+	
+	
+	public static void main (String[] args) {
+	
+		busGUI();
+	
+	}
+}
